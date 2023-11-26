@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fitness Tips</string>
+    <string name="app_name">FITNESS TIPS</string>
     <string name="squat">SQUAT</string>
     <string name="squat_desc">A squat is a strength exercise in which the trainee lowers their hips from a standing position and then stands back up. During the descent, the hip and knee joints flex while the ankle joint dorsiflexes; conversely the hip and knee joints extend and the ankle joint plantarflexes when standing up.</string>
     <string name="lunge">LUNGE</string>
@@ -22,4 +22,5 @@
     <string name="triceps_extension_desc">A push-down is a strength training exercise used for strengthening the triceps muscles in the back of the arm. This exercise can also be called a tricep push-down or a two armed standing tricep extension. The exercise is completed by pushing an object downward against resistance. This exercise is an example of the primary function of the triceps, extension of the elbow joint.</string>
     <string name="shrug">SHRUG</string>
     <string name="shrug_desc">The shoulder shrug (usually called simply the shrug) is an exercise in weight training used to develop the upper trapezius muscle.The lifter stands erect, hands about shoulder width apart, and slowly raises the shoulders as high as possible, and then slowly lowers them, while not bending the elbows, or moving the body at all. </string>
+    <string name="learn_more_icon_desc">Learn more</string>
 </resources>

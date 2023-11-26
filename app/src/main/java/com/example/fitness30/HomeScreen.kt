@@ -23,13 +23,20 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,7 +46,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.fitness30.model.FitnessRepository
 import com.example.fitness30.model.FitnessTip
 import com.example.fitness30.ui.theme.Fitness30Theme
 
@@ -89,8 +95,10 @@ fun FitnessListItem(
     tip: FitnessTip,
     modifier: Modifier = Modifier
 ) {
+    var expanded by remember { mutableStateOf(false)}
+
     Card(
-        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 150.dp),
         modifier = modifier
             .clip(CutCornerShape(12.dp))
             .background(color = MaterialTheme.colorScheme.tertiaryContainer),
@@ -126,22 +134,44 @@ fun FitnessListItem(
                     contentScale = ContentScale.FillWidth,
                 )
             }
-            Card(
-                modifier = modifier
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(color = MaterialTheme.colorScheme.secondaryContainer)
-            ) {
-                Text(
-                    text = stringResource(tip.desc),
-                    style = MaterialTheme.typography.bodySmall,
-                    modifier = Modifier.padding(10.dp),
-                    textAlign = TextAlign.Center,
-                )
+            ExpandIcon(
+                expanded = expanded,
+                onClick = { expanded = !expanded })
+            if(expanded) {
+                Card(
+                    modifier = modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                ) {
+                    Text(
+                        text = stringResource(tip.desc),
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(10.dp),
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
         }
     }
 }
 
+@Composable
+fun ExpandIcon(
+    expanded: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    IconButton(
+        onClick = onClick,
+        modifier = modifier
+    ) {
+        Icon(
+            imageVector = if(expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+            tint = MaterialTheme.colorScheme.secondary,
+            contentDescription = stringResource(R.string.learn_more_icon_desc)
+        )
+    }
+}
 
 @Preview
 @Composable
